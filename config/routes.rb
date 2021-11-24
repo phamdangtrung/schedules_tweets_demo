@@ -15,4 +15,8 @@ Rails.application.routes.draw do
 
   # Logout routes
   delete 'logout', to: 'sessions#destroy'
+
+  # Password routes
+  get 'password', to: 'password#edit', as: 'edit_password'
+  patch 'password', to: 'password#update'
 end
