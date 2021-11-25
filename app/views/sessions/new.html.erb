@@ -7,6 +7,7 @@
   <div class="mb-3">
     <%= form.label :email %>
     <%= form.password_field :password, class: "form-control", placeholder: "password" %>
+    <%= link_to "Forgot your password", reset_password_path %>
   </div>
   <div class="mb-3">
     <%= form.submit "Login", disable_with: 'Logging in...', class: "btn btn-info" %>
