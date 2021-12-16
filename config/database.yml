@@ -8,10 +8,12 @@ default: &default
   adapter: mysql2
   reconnect: false
   encoding: utf8
-  username: phamd
+  username: root
   password: 123
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  host: 127.0.0.1
+  port: 3308
 
 development:
   <<: *default
