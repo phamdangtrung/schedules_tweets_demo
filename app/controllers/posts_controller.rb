@@ -1,13 +1,16 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :require_user_logged_in!
+  # , :set_post, only: %i[show edit update destroy]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.where(user_id: Current.user.id).order(:created_at)
   end
 
   # GET /posts/1 or /posts/1.json
-  def show; end
+  def show
+    @post = Post.find(params[:id])
+  end
 
   # GET /posts/new
   def new
@@ -19,7 +22,7 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(post_params.merge(user_id: Current.user.id))
 
     respond_to do |format|
       if @post.save
@@ -63,6 +66,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :is_public, :body)
+      params.require(:post).permit(:title, :is_public, :body, :user_id)
     end
 end
