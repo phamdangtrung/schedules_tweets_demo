@@ -1,0 +1,10 @@
+<%= form_with url: new_post_path do |form| %>
+  <div class="mb-3">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control", placeholder: "An awesome title" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :email %>
+    <%= form.password_field :password, class: "form-control", placeholder: "password" %>
+  </div>
+<% end %>
