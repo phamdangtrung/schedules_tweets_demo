@@ -7,8 +7,8 @@ class PostsController < ApplicationController
     @posts = Post.where(user_id: Current.user.id).order(created_at: :desc)
   end
 
-  def user_posts
-    @posts = Post.where(user_id: params[:user_id]).order(created_at: :desc)
+  def author_posts
+    @posts = Post.where('user_id = ? AND is_public = true', params[:id]).order(created_at: :desc)
   end
 
   # GET /posts/1 or /posts/1.json

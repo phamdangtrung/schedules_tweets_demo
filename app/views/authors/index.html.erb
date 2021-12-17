@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Authors</th>
+      <th>Is public</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @authors.each do |author| %>
+      <tr>
+        <td><%= author.email %></td>
+        <td><%= link_to author.email, author_posts_path(author.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
