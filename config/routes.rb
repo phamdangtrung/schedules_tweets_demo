@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   get 'password/reset/edit', to: 'password_resets#edit', as: 'confirmed_reset_password'
   patch 'password/reset/edit', to: 'password_resets#update'
 
-  # # Post routes
+  # Post routes
   # get 'post/index', to: 'post#index', as: 'my_posts'
   # get 'post/new', to: 'post#new', as: 'new_post'
   # post 'post/new', to: 'post#create'

@@ -4,12 +4,19 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.where(user_id: Current.user.id).order(:created_at)
+    @posts = Post.where(user_id: Current.user.id).order(created_at: :desc)
+  end
+
+  def user_posts
+    @posts = Post.where(user_id: params[:user_id]).order(created_at: :desc)
   end
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.find(params[:id])
+    return @post = Post.find(params[:id]) if viewable?
+
+    flash[:alert] = 'Nice try! But you are not authorized.'
+    redirect_to action: 'index'
   end
 
   # GET /posts/new
@@ -19,7 +26,10 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    return @post = Post.find(params[:id]) if editable?
+
+    flash[:alert] = 'Nice try! But you are not authorized.'
+    redirect_to action: 'index'
   end
 
   # POST /posts or /posts.json
@@ -53,6 +63,8 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    return flash[:alert] = 'Nice try! But you are not authorized.' unless editable?
+
     @post = Post.find(params[:id])
     @post.destroy
     respond_to do |format|
@@ -66,5 +78,13 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :is_public, :body, :user_id)
+    end
+
+    def editable?
+      return true unless Current.user.id != Post.find(params[:id]).user_id
+    end
+
+    def viewable?
+      return true unless Current.user.id != Post.find(params[:id]).user_id && Post.find(params[:id]).is_public == false
     end
 end
