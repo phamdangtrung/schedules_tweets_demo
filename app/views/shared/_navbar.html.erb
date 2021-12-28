@@ -47,8 +47,11 @@
         <!-- Profile dropdown -->
         <div class="ml-3 relative">
           <% if Current.user %>
-            <span><%= link_to Current.user.email, edit_password_path, class: "flex text-sm" %></span>
-            <%= button_to "Logout", logout_path, method: :delete, class: "button bg-blue-500 shadow-lg shadow-blue-500" %>
+            <%= link_to Current.user.email, edit_password_path, class: "relative text-neutral-300" %>
+            <%# <%= button_to "Logout", logout_path, method: :delete, class: "relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0" %>
+            <button class="shadow-lg shadow-blue-500/50 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-800">
+              <%= link_to "Logout", logout_path, method: :delete, class: "relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0" %>
+            </button>
           <% else%>
             <button class="shadow-lg shadow-indigo-500/50 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-200 via-red-300 to-yellow-200 group-hover:from-red-200 group-hover:via-red-300 group-hover:to-yellow-200 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:ring-red-100 dark:focus:ring-red-400">
               <%= link_to "Login", login_path, class: "relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0" %>
