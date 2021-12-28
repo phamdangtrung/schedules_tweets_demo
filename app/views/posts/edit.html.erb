@@ -1,4 +1,23 @@
-<h1>Editing Post</h1>
-<%= render 'form', post: @post %>
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+  
+<div class="row my-4">
+  <div class="shadow sm:rounded-md sm:overflow-hidden">
+    <div class="px-4 py-5 space-y-6 sm:p-6">
+      <h1>Editing Post</h1>
+      <%# <%= render 'form', post: @post %>
+      <%= form_with model: @post do |form| %>
+        <div class="mb-6">
+          <label for="email" class="block mb-2 text-sm font-medium text-dark-900 dark:text-dark-300">Title</label>
+          <%= form.text_field :title, class: "focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-lg sm:text-sm border-gray-300", placeholder: "A good title", required: "true" %>
+        </div>
+        <div class="mb-6">
+          <label for="text" class="block mb-2 text-sm font-medium text-dark-900 dark:text-dark-300">Content</label>
+          <%= form.rich_text_area :body %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="row flex flex-row-reverse>
+  <%= link_to 'Show', @post %>
+  <%= link_to 'Back', posts_path %>
+</div>
