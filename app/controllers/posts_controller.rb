@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def author_posts
+    @author = User.find(params[:id])
     @posts = Post.where('user_id = ? AND is_public = true', params[:id]).order(created_at: :desc)
   end
 
@@ -26,6 +27,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @categories = Category.all
     return @post = Post.find(params[:id]) if editable?
 
     flash[:alert] = 'Nice try! But you are not authorized.'
@@ -34,7 +36,7 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params.merge(user_id: Current.user.id))
+    @post = Post.new(post_params.merge(user_id: Current.user.id, category_id: 1))
 
     respond_to do |format|
       if @post.save
@@ -49,6 +51,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    # params[:category_id] = 1
     @post = Post.update(params[:id], post_params)
     respond_to do |format|
       if @post.errors.any?
@@ -77,7 +80,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :is_public, :body, :user_id)
+      params.require(:post).permit(:title, :is_public, :body, :user_id, :category_id)
     end
 
     def editable?
