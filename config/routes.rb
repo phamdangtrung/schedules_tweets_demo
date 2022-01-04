@@ -30,8 +30,9 @@ Rails.application.routes.draw do
   get 'authors/index', to: 'authors#index', as: 'authors'
 
   # Posts routes
-  get 'posts/author_posts/:id', to: 'posts#author_posts', as: 'author_posts'
+  get '/author_posts/:id', to: 'posts#author_posts', as: 'author_posts'
   # get 'post/index', to: 'post#index', as: 'my_posts'
   # get 'post/new', to: 'post#new', as: 'new_post'
   # post 'post/new', to: 'post#create'
+  get '/my_posts', to: 'posts#index', as: 'my_posts'
 end
