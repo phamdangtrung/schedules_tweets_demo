@@ -37,8 +37,8 @@
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <%= link_to "Home", root_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
+            <%= link_to "Latest Articles", root_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
             <%= link_to "Authors", authors_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
-            <%= link_to "Public Posts", root_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
             <%= link_to "About Us", about_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" %>
           </div>
         </div>
@@ -47,7 +47,7 @@
         <!-- Profile dropdown -->
         <div class="ml-3 relative">
           <% if Current.user %>
-            <%= link_to Current.user.email, edit_password_path, class: "relative text-neutral-300" %>
+            <%= link_to "Hello, #{Current.user.email}", edit_password_path, class: "px-5 relative text-neutral-300" %>
             <%# <%= button_to "Logout", logout_path, method: :delete, class: "relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0" %>
             <button class="shadow-lg shadow-blue-500/50 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-800">
               <%= link_to "Logout", logout_path, method: :delete, class: "relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0" %>

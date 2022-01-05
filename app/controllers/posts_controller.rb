@@ -22,6 +22,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    @categories = Category.all
     @post = Post.new
   end
 
